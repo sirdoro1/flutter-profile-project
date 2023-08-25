@@ -4,8 +4,15 @@ void main() {
   runApp(const MaterialApp(home: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  int currentLevel = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -19,24 +26,32 @@ class MyApp extends StatelessWidget {
         ),
         backgroundColor: Colors.grey[900],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            currentLevel = currentLevel + 1;
+          });
+        },
+        child: const Icon(Icons.add),
+      ),
       body: Container(
         color: Colors.grey[800],
         padding: const EdgeInsets.all(20.0),
-        child: const Column(
+        child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(height: 30),
-              Center(
+              const SizedBox(height: 30),
+              const Center(
                 child: CircleAvatar(
                   backgroundImage: AssetImage('assets/profile.jpg'),
                   radius: 50,
                 ),
               ),
-              Divider(
+              const Divider(
                 height: 60,
                 color: Colors.grey,
               ),
-              Row(
+              const Row(
                 children: [
                   Icon(Icons.person, color: Colors.grey, size: 20),
                   SizedBox(
@@ -53,17 +68,17 @@ class MyApp extends StatelessWidget {
                   ),
                 ],
               ),
-              Text('Sharp Shooter',
+              const Text('Sharp Shooter',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 2.0,
                     color: Colors.amber,
                   )),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Row(
+              const Row(
                 children: [
                   Icon(Icons.leaderboard_rounded, color: Colors.grey, size: 20),
                   SizedBox(
@@ -80,15 +95,15 @@ class MyApp extends StatelessWidget {
                   ),
                 ],
               ),
-              Text('Senior Man',
-                  style: TextStyle(
+              Text('$currentLevel',
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 2.0,
                     color: Colors.amber,
                   )),
-              SizedBox(height: 20),
-              Row(children: [
+              const SizedBox(height: 20),
+              const Row(children: [
                 Icon(Icons.email, color: Colors.grey, size: 20),
                 SizedBox(
                   width: 5,
@@ -103,15 +118,15 @@ class MyApp extends StatelessWidget {
                   ),
                 ),
               ]),
-              Text('sharp.shooter@serniormanlevel.com',
+              const Text('sharp.shooter@serniormanlevel.com',
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 2.0,
                     color: Colors.amber,
                   )),
-              SizedBox(height: 20),
-              Divider(
+              const SizedBox(height: 20),
+              const Divider(
                 height: 60,
                 color: Colors.grey,
               ),
